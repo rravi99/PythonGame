@@ -1,3 +1,5 @@
 public class Main{
-	// test change
+	public static void main(String[] args) throws InterruptedException {
+			MainFrame.startGUI();
+	}
 }
