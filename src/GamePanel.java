@@ -63,14 +63,14 @@ public class GamePanel extends JPanel {
         // g.setColor(Color.BLACK);
         // g.drawString("Game Board", 100,100);
 
-        int cellWidth = this.getWidth() / 3;
-        int cellHeight = this.getHeight() / 3;
+        int cellWidth = this.getWidth() / 17;
+        int cellHeight = this.getHeight() / 17;
 
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
 
 
-        for (int i = 1; i < 3; i++) {
+        for (int i = 1; i < 17; i++) {
             g.drawLine(cellWidth * i, 0, cellWidth * i, this.getHeight());
             g.drawLine(0, cellHeight * i, this.getWidth(), cellHeight * i);
         }

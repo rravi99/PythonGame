@@ -58,7 +58,7 @@ public class MainFrame extends JFrame {
     }
     public void createFrame(Object semaphore) {
         // Sets the title found in the Title Bar of the JFrame
-        this.setTitle("Tree");
+        this.setTitle("Python");
         // Sets the size of the main Window
         this.setSize(WIDTH, HEIGHT);
         // Allows the application to properly close when the
