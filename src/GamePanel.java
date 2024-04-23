@@ -56,23 +56,26 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g){  
         super.paintComponent(g);
         this.setBackground(Color.WHITE);
-        g.clearRect(0, 0, this.getWidth(), this.getHeight());
-
+        g.setColor(new Color(106,211,87));
+        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        
         // draw the Game board hash marks and X's and O's
         // for now, just draw some text
         // g.setColor(Color.BLACK);
         // g.drawString("Game Board", 100,100);
-
+        g.setColor(new Color(179,185,178));
+       // g.drawRect(0, 0, this.getWidth(), this.getHeight()/9);
+        g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         int cellWidth = this.getWidth() / 17;
-        int cellHeight = this.getHeight() / 17;
+        int cellHeight = (this.getHeight() - this.getHeight()/9)/ 17;
 
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
 
-
+        g.setColor(Color.BLACK);
         for (int i = 1; i < 17; i++) {
-            g.drawLine(cellWidth * i, 0, cellWidth * i, this.getHeight());
-            g.drawLine(0, cellHeight * i, this.getWidth(), cellHeight * i);
+            g.drawLine(cellWidth * i, this.getHeight() / 9, cellWidth * i, this.getHeight());
+            g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
 
     }
