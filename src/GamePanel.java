@@ -40,6 +40,7 @@ import javax.swing.*;
 public class GamePanel extends JPanel {
     private int cellWidth;
     private int cellHeight;
+    private Board board;
    
     // TODO: have instance fields for the current turn and what the AI is (X or O)
 
@@ -47,7 +48,7 @@ public class GamePanel extends JPanel {
   
 
     public GamePanel() {
-        
+        board = new Board(17, 4, 7);
     }
 
     // Keep this method!
@@ -77,7 +78,20 @@ public class GamePanel extends JPanel {
             g.drawLine(cellWidth * i, this.getHeight() / 9, cellWidth * i, this.getHeight());
             g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
+        
+        
 
+    }
+    
+    private void drawSnake(Graphics g) {
+    	String[][] squares = this.board.getSquares();
+    	for(int row = 0; row < squares.length; row++) {
+    		for (int col = 0; col < squares[0].length; col++) {
+    			if (squares[row][col].equals("s")) {
+    				g.fillRect(0,0,this.cellWidth, this.cellHeight);
+    			}
+    		}
+    	}
     }
 
     /**

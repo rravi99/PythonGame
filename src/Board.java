@@ -5,10 +5,15 @@ public class Board {
 	private Fruit currFruit;
 	private int size;
 	
-	public Board(int size) {
+	public Board(int size, int x, int y) {
 		this.size = size;
 		squares = new String[this.size][this.size];
-		// Initializing python and fruit
+		jack = new Python();
+		
+		// starts jack at 4. 7
+		for (int i = 0; i < 3; i++) {
+			squares[x - i][y] = "s";
+		}
 	}
 	public Python getPython() {
 		return this.jack;
