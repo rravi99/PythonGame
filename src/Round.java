@@ -5,7 +5,7 @@ public class Round {
 	
 	public Round() {
 		this.score = 0;
-		board = new Board(17);
+		board = new Board(17, 4, 7);
 	}
 	
 }

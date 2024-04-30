@@ -12,7 +12,7 @@ public class Board {
 		
 		// starts jack at 4. 7
 		for (int i = 0; i < 3; i++) {
-			squares[x - i][y] = "s";
+			squares[x][y-i] = "s";
 		}
 	}
 	public Python getPython() {
@@ -31,7 +31,7 @@ public class Board {
 		// Place fruit in a random location on board
 	}
 	
-	private void updateSnakePos() {
+	public void updateSnakePos(String direction) {
 		
 	}
 	

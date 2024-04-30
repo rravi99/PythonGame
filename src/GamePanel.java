@@ -12,7 +12,8 @@
 */
 
 
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.*;
@@ -48,7 +49,9 @@ public class GamePanel extends JPanel {
   
 
     public GamePanel() {
-        board = new Board(17, 4, 7);
+        board = new Board(17, 7, 4);
+        createKeyHandlers();
+        this.setFocusable(true);
     }
 
     // Keep this method!
@@ -78,7 +81,7 @@ public class GamePanel extends JPanel {
             g.drawLine(cellWidth * i, this.getHeight() / 9, cellWidth * i, this.getHeight());
             g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
-        
+        drawSnake(g);
         
 
     }
@@ -87,9 +90,12 @@ public class GamePanel extends JPanel {
     	String[][] squares = this.board.getSquares();
     	for(int row = 0; row < squares.length; row++) {
     		for (int col = 0; col < squares[0].length; col++) {
-    			if (squares[row][col].equals("s")) {
-    				g.fillRect(0,0,this.cellWidth, this.cellHeight);
-    			}
+    			if(squares[row][col] != null ) {
+    				if (squares[row][col].equals("s")) {
+	    				g.setColor(Color.BLUE);
+	    				g.fillRect(col * this.cellWidth, row * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
+    				}
+    			} 
     		}
     	}
     }
@@ -114,6 +120,17 @@ public class GamePanel extends JPanel {
       
         repaint();
         }
+    private void createKeyHandlers() {
+    	this.addKeyListener(new KeyAdapter() {
+    		@Override
+    		public void keyPressed(KeyEvent k) {
+    			//System.out.println("HEY");
+    			System.out.println(k.getKeyText(k.getKeyCode()));
+    			
+    			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    		}
+    	});
+    }
 
 
 
