@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Board {
 	private String[][] squares;
@@ -10,9 +11,11 @@ public class Board {
 		squares = new String[this.size][this.size];
 		jack = new Python();
 		
+		x -= 1;
+		y -= 1;
 		// starts jack at 4. 7
 		for (int i = 0; i < 3; i++) {
-			squares[x][y-i] = "s";
+			squares[y][x-i] = "s";
 		}
 	}
 	public Python getPython() {
@@ -32,6 +35,38 @@ public class Board {
 	}
 	
 	public void updateSnakePos(String direction) {
+		int[] head = this.jack.getHead();
+		int[] tail = this.jack.getTail();
+		System.out.println(Arrays.deepToString(this.squares));
+		switch(direction) {
+			case "Right":
+				head[1] = head[1] + 1;
+				this.squares[head[1]][head[0]] = "s";
+				this.squares[tail[1]][tail[0]] = null;
+				tail[1] = tail[1] + 1;
+				break;
+			case "Left":
+				head[0] = head[0] - 1;
+				tail[0] = tail[0] - 1;
+				break;
+			case "Up":
+				head[1] = head[1] + 1;
+				tail[1] = tail[1] + 1;
+				break;
+			case "Down":
+				head[1] = head[1] - 1;
+				tail[1] = tail[1] - 1;
+				break;
+			default:
+				break;
+		}
+		
+		System.out.println(Arrays.deepToString(this.squares));
+		this.jack.setTail(tail);
+		this.jack.setHead(head);
+	}
+	
+	private void updateBoard(int[] oldHead, int[] oldTail) {
 		
 	}
 	

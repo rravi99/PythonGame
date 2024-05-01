@@ -126,8 +126,8 @@ public class GamePanel extends JPanel {
     		public void keyPressed(KeyEvent k) {
     			//System.out.println("HEY");
     			System.out.println(k.getKeyText(k.getKeyCode()));
-    			
     			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    			GamePanel.this.repaint();
     		}
     	});
     }
