@@ -87,16 +87,11 @@ public class GamePanel extends JPanel {
     }
     
     private void drawSnake(Graphics g) {
-    	String[][] squares = this.board.getSquares();
-    	for(int row = 0; row < squares.length; row++) {
-    		for (int col = 0; col < squares[0].length; col++) {
-    			if(squares[row][col] != null ) {
-    				if (squares[row][col].equals("s")) {
-	    				g.setColor(Color.BLUE);
-	    				g.fillRect(col * this.cellWidth, row * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
-    				}
-    			} 
-    		}
+    	Python jack = this.board.getPython();
+    	
+    	for (Point point : jack.getPoints()) {
+    		g.setColor(jack.getColor());
+			g.fillRect(point.getCol() * this.cellWidth, point.getRow() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
     	}
     }
 

@@ -4,22 +4,19 @@ import java.util.LinkedList;
 
 public class Python {
 
-	private ArrayList<Integer> length;
+	private ArrayList<Point> points;
 	private boolean alive;
 	private boolean ateFruit;
 	private Color color;
-	private int[] head;
-	private int[] tail;
 	
 	public Python() {
-		length = new ArrayList<>();
-		length.add(0);
-		length.add(1);
-		length.add(2);
 		alive = true;
-		color = Color.GREEN;
-		this.head = new int[] {4, 7};
-		this.tail = new int[] {1, 6};
+		color = Color.BLUE;
+		
+		points = new ArrayList<>();
+		points.add(new Point(6, 3));
+		points.add(new Point(6, 2));
+		points.add(new Point(6, 1));
 	}
 	
 	public void handleLength() {
@@ -31,19 +28,25 @@ public class Python {
 		this.ateFruit = true;
 	}
 	
-	public int[] getHead() {
-		return this.head;
+	public void moveRight() {
+		
 	}
 	
-	public int[] getTail() {
-		return this.tail;
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
+	public void setPoints(ArrayList<Point> points) {
+		this.points = points;
 	}
 	
-	public void setTail(int[] tail) {
-		this.tail = tail;
-	}
-	
-	public void setHead(int[] head) {
-		this.head = head;
-	}
 }
