@@ -33,24 +33,57 @@ public class Board {
 	}
 	
 	public void updateSnakePos(String direction) {
-		System.out.println(Arrays.deepToString(this.squares));
+
 		switch(direction) {
 			case "Right":
+				// Have an If statement here (If the user clicks diff key)
+				// break
+				// Else recursively call so snake keeps moving
+				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY+1)) {
+					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY+1);
+					this.jack.currentHeadY++;
+					this.jack.removePoint();
+				}
+				if(this.jack.currentHeadY == 17) {
+					
+					//Game Ended(COLLISION OCCURED)
+				}
 				break;
 			case "Left":
-
+				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY-1)) {
+					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY-1);
+					this.jack.currentHeadY--;
+					this.jack.removePoint();
+					if(this.jack.currentHeadY == 0) {
+						//Game Ended(COLLISION OCCURED)
+					}
+				}
 				break;
 			case "Up":
-	
+				if(!this.jack.isPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY)) {
+					this.jack.addPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY);
+					this.jack.currentHeadX--;
+					this.jack.removePoint();
+					if(this.jack.currentHeadX == 0) {
+						//Game Ended(COLLISION OCCURED)
+					}
+				}
 				break;
 			case "Down":
-			
+				if(!this.jack.isPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY)) {
+					this.jack.addPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY);
+					this.jack.currentHeadX++;
+					this.jack.removePoint();
+					if(this.jack.currentHeadX == 17) {
+						//Game Ended(COLLISION OCCURED)
+					}
+				}
 				break;
 			default:
 				break;
 		}
 		
-		System.out.println(Arrays.deepToString(this.squares));
+	
 	
 	}
 	
