@@ -13,12 +13,12 @@ public class Fruit {
 		//this.fruit = //Image of apple
 		URL resource;
         BufferedImage image = null;
-        	try {
+        	/*try {
                 image = ImageIO.read(resource);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-            }
+            } */
           
 	}
 	
