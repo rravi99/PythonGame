@@ -1,10 +1,14 @@
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+
+import javax.management.timer.Timer;
 
 public class Board {
 	private String[][] squares;
 	private Python jack;
 	private Fruit currFruit;
 	private int size;
+	
 	
 	public Board(int size, int x, int y) {
 		this.size = size;
@@ -14,6 +18,21 @@ public class Board {
 		// starts jack at 4. 7
 		for (int i = 0; i < 3; i++) {
 			squares[x-1][y-1-i] = "s";
+		}
+		
+		
+		
+	}
+	
+	public void initaiteMovement() {
+		
+	}
+	private void moveSnakeLoop() {
+		System.out.println("Moved snake");
+		if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY+1)) {
+			this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY+1);
+			this.jack.currentHeadY++;
+			this.jack.removePoint();
 		}
 	}
 	public Python getPython() {
@@ -33,17 +52,25 @@ public class Board {
 	}
 	
 	public void updateSnakePos(String direction) {
+		
+		// this.direction = direction;
 
 		switch(direction) {
 			case "Right":
+				
+				// moveSnakeLoop();
+				
 				// Have an If statement here (If the user clicks diff key)
 				// break
 				// Else recursively call so snake keeps moving
+				
 				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY+1)) {
 					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY+1);
 					this.jack.currentHeadY++;
 					this.jack.removePoint();
 				}
+				
+				
 				if(this.jack.currentHeadY == 17) {
 					
 					//Game Ended(COLLISION OCCURED)
