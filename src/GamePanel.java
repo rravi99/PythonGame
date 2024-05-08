@@ -83,7 +83,23 @@ public class GamePanel extends JPanel {
         }
         drawSnake(g);
         
+        
+      /*  Thread one = new Thread() {
+			public void run() {
+			try {
+				while (true) {
+					Thread.sleep(1000);
+					board.updateSnakePos("Right");
+				}
+				
 
+			} catch(InterruptedException v) {
+			System.out.println(v);
+			}
+			}
+			};
+			one.run();
+*/
     }
     
     private void drawSnake(Graphics g) {
