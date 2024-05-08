@@ -82,7 +82,7 @@ public class GamePanel extends JPanel {
             g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
         drawSnake(g);
-        
+        createKeyHandlers();
 
     }
     
