@@ -8,9 +8,7 @@ public class Board {
 	private Python jack;
 	private Fruit currFruit;
 	private int size;
-	public boolean bool = true;
 	
-	private String direction;
 	
 	public Board(int size, int x, int y) {
 		this.size = size;
@@ -55,7 +53,7 @@ public class Board {
 	
 	public void updateSnakePos(String direction) {
 		
-		this.direction = direction;
+		// this.direction = direction;
 
 		switch(direction) {
 			case "Right":

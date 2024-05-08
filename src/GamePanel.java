@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
@@ -138,6 +139,18 @@ public class GamePanel extends JPanel {
     			//System.out.println("HEY");
     			System.out.println(k.getKeyText(k.getKeyCode()));
     			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    			
+    			/*for(int i = 0; i < 5; i++) {
+    				//System.out.print("IN LOOP" + k.getKeyText(k.getKeyCode()));
+    				try {
+    					TimeUnit.MILLISECONDS.sleep(20);
+    					GamePanel.this.repaint();
+        				board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    				} catch (InterruptedException e) {
+    					e.printStackTrace();
+    				}
+    				
+    			} */
     			GamePanel.this.repaint();
     		}
     	});

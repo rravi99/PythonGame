@@ -10,6 +10,16 @@ public class Python {
 	private Color color;
 	public int currentHeadY;
 	public int currentHeadX;
+	private String direction;
+	
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
 	public Python() {
 		alive = true;
 		color = Color.BLUE;
