@@ -11,6 +11,7 @@ public class Board {
 	
 	
 	public Board(int size, int x, int y) {
+		this.currFruit = new Fruit();
 		this.size = size;
 		squares = new String[this.size][this.size];
 		jack = new Python();

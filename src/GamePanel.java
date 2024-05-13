@@ -83,7 +83,7 @@ public class GamePanel extends JPanel {
             g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
         drawSnake(g);
-        createKeyHandlers();
+        drawFruit(g);
         
         
       /*  Thread one = new Thread() {
@@ -114,6 +114,34 @@ public class GamePanel extends JPanel {
     	}
     }
 
+    private void drawFruit(Graphics g) {
+    	
+    	
+    	Fruit fruit = board.getFruit();
+    	Point fruitLoc = fruit.getFruitLoc();
+    	
+    	BufferedImage image = null;
+    	URL resource;
+    	resource = getClass().getResource(fruit.getFruitPath());
+    	
+    	try {
+    		image = ImageIO.read(resource);
+    	}catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	int yCoord = fruitLoc.getRow() * this.cellHeight;
+    	if (yCoord <= (this.getHeight() / 9)) {
+    		yCoord += this.getHeight() / 9;
+    	}
+    	
+    	System.out.println("x: " + board.getFruit().getFruitLoc().getCol() * this.cellWidth);
+    	System.out.println("y: " + yCoord);
+    	System.out.println("this is width: " + this.getWidth());
+    	System.out.println("this is height: " + this.getHeight());
+    	
+    	g.drawImage(image, fruitLoc.getCol() * this.cellWidth, yCoord, this);
+    }
     /**
      * This allows this dialog to be drawn at a good size.
      */
@@ -130,10 +158,9 @@ public class GamePanel extends JPanel {
             System.out.println(row);
             System.out.println(col);
          
-
-      
         repaint();
         }
+    
     private void createKeyHandlers() {
     	this.addKeyListener(new KeyAdapter() {
     		@Override
