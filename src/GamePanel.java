@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
@@ -107,11 +108,15 @@ public class GamePanel extends JPanel {
     
     private void drawSnake(Graphics g) {
     	Python jack = this.board.getPython();
+    	ArrayList<Point> points = jack.getPoints();
     	
-    	for (Point point : jack.getPoints()) {
+    	for (Point point : points) {
     		g.setColor(jack.getColor());
 			g.fillRect(point.getCol() * this.cellWidth, point.getRow() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
     	}
+    	
+    	//g.setColor(Color.BLACK);
+    	//g.fillOval(points.get(points.size() - 1).getCol() * this.cellWidth, points.get(points.size() - 1).getRow() * this.cellHeight, cellHeight/5, cellHeight/5);
     }
 
     private void drawFruit(Graphics g) {
@@ -130,17 +135,24 @@ public class GamePanel extends JPanel {
     		e.printStackTrace();
     	}
     	
-    	int yCoord = fruitLoc.getRow() * this.cellHeight;
-    	if (yCoord <= (this.getHeight() / 9)) {
-    		yCoord += this.getHeight() / 9;
+    	int xCoord = (fruitLoc.getCol() * this.cellWidth) - (cellWidth / 2);
+    	
+    	
+    	for (Point point: this.board.getPython().getPoints()) {
+    		if (xCoord == (point.getCol() * this.cellWidth)) {
+    			xCoord += cellWidth;
+    		}
     	}
     	
-    	System.out.println("x: " + board.getFruit().getFruitLoc().getCol() * this.cellWidth);
-    	System.out.println("y: " + yCoord);
-    	System.out.println("this is width: " + this.getWidth());
-    	System.out.println("this is height: " + this.getHeight());
     	
-    	g.drawImage(image, fruitLoc.getCol() * this.cellWidth, yCoord, this);
+    	int yCoord = (fruitLoc.getRow() * this.cellHeight) - (cellHeight/2);
+    	// prevents fruit from being on the grey rectangle
+    	if (yCoord <= (this.getHeight()/9)) {
+    		yCoord += (this.getHeight() / 9) * 2;
+    	}
+    	
+    	System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
+    	g.drawImage(image, xCoord, yCoord, image.getWidth()/3, image.getHeight()/3, this);
     }
     /**
      * This allows this dialog to be drawn at a good size.

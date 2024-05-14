@@ -13,8 +13,8 @@ public class Fruit {
 	public Fruit() {
 		//this.fruit = //Image of apple
 		this.fruitPath = "Fruit/Apple.png";
-		System.out.println((int) (Math.random() * 16));
-		this.fruitLoc = new Point(((int) (Math.random() * 16)), ((int) (Math.random() * 17)));
+		
+		this.fruitLoc = new Point(((int) (Math.random() * 15) + 1), ((int) (Math.random() * 16)));
 		
           
 	}
