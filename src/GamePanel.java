@@ -44,6 +44,7 @@ public class GamePanel extends JPanel {
     private int cellWidth;
     private int cellHeight;
     private Board board;
+    private BufferedImage image;
    
     // TODO: have instance fields for the current turn and what the AI is (X or O)
 
@@ -54,6 +55,16 @@ public class GamePanel extends JPanel {
         board = new Board(17, 7, 4);
         createKeyHandlers();
         this.setFocusable(true);
+        
+    	URL resource;
+    	resource = getClass().getResource("Fruit/grass.png");
+    	
+    	try {
+    		image = ImageIO.read(resource);
+    	}catch (IOException e) {
+    		e.printStackTrace();
+    	}
+  
     }
 
     // Keep this method!
@@ -69,20 +80,26 @@ public class GamePanel extends JPanel {
         // for now, just draw some text
         // g.setColor(Color.BLACK);
         // g.drawString("Game Board", 100,100);
-        g.setColor(new Color(179,185,178));
+        //g.setColor(new Color(179,185,178));
        // g.drawRect(0, 0, this.getWidth(), this.getHeight()/9);
-        g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
+        //g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         int cellWidth = this.getWidth() / 17;
         int cellHeight = (this.getHeight() - this.getHeight()/9)/ 17;
 
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
 
+        
         g.setColor(Color.BLACK);
         for (int i = 1; i < 17; i++) {
             g.drawLine(cellWidth * i, this.getHeight() / 9, cellWidth * i, this.getHeight());
             g.drawLine(0, this.getHeight() / 9 + cellHeight * i, this.getWidth(), this.getHeight() / 9 + cellHeight * i);
         }
+        
+       
+        g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
+        g.setColor(new Color(179,185,178));
+        g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         drawSnake(g);
         drawFruit(g);
         
@@ -135,24 +152,24 @@ public class GamePanel extends JPanel {
     		e.printStackTrace();
     	}
     	
-    	int xCoord = (fruitLoc.getCol() * this.cellWidth) - (cellWidth / 2);
+    	int xCoord = (fruitLoc.getCol() * this.cellWidth) + cellWidth/6; 
     	
     	
     	for (Point point: this.board.getPython().getPoints()) {
     		if (xCoord == (point.getCol() * this.cellWidth)) {
-    			xCoord += cellWidth;
+    			xCoord += cellWidth * 2;
     		}
     	}
     	
     	
-    	int yCoord = (fruitLoc.getRow() * this.cellHeight) - (cellHeight/2);
+    	int yCoord = (fruitLoc.getRow() * this.cellHeight); //- (cellHeight/2);
     	// prevents fruit from being on the grey rectangle
     	if (yCoord <= (this.getHeight()/9)) {
     		yCoord += (this.getHeight() / 9) * 2;
     	}
     	
     	System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
-    	g.drawImage(image, xCoord, yCoord, image.getWidth()/3, image.getHeight()/3, this);
+    	g.drawImage(image, xCoord, yCoord, image.getWidth()/4, image.getHeight()/4, this);
     }
     /**
      * This allows this dialog to be drawn at a good size.
