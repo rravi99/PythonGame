@@ -39,6 +39,8 @@ public class Fruit {
 		this.fruitLoc = fruitLoc;
 	}
 	
+	
+	
 	/*
 	public Fruit(Image fruit) {
 		this.fruit = fruit;

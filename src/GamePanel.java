@@ -45,6 +45,9 @@ public class GamePanel extends JPanel {
     private int cellHeight;
     private Board board;
     private BufferedImage image;
+    private int score;
+    private Point snakeHead;
+    private Point fruitCoord;
    
     // TODO: have instance fields for the current turn and what the AI is (X or O)
 
@@ -130,8 +133,9 @@ public class GamePanel extends JPanel {
     	for (Point point : points) {
     		g.setColor(jack.getColor());
 			g.fillRect(point.getCol() * this.cellWidth, point.getRow() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
+			
     	}
-    	
+    	//snakePoints = point.get(points.size-1);
     	//g.setColor(Color.BLACK);
     	//g.fillOval(points.get(points.size() - 1).getCol() * this.cellWidth, points.get(points.size() - 1).getRow() * this.cellHeight, cellHeight/5, cellHeight/5);
     }
@@ -168,7 +172,7 @@ public class GamePanel extends JPanel {
     		yCoord += (this.getHeight() / 9) * 2;
     	}
     	
-    	System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
+    	//System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
     	g.drawImage(image, xCoord, yCoord, image.getWidth()/4, image.getHeight()/4, this);
     }
     /**
@@ -195,7 +199,7 @@ public class GamePanel extends JPanel {
     		@Override
     		public void keyPressed(KeyEvent k) {
     			//System.out.println("HEY");
-    			System.out.println(k.getKeyText(k.getKeyCode()));
+    			//System.out.println(k.getKeyText(k.getKeyCode()));
     			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
     			
     			/*for(int i = 0; i < 5; i++) {

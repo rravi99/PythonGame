@@ -69,6 +69,9 @@ public class Board {
 					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY+1);
 					this.jack.currentHeadY++;
 					this.jack.removePoint();
+					if(currFruit.getFruitLoc().getRow() == this.jack.currentHeadY && currFruit.getFruitLoc().getCol() == this.jack.currentHeadX) {
+						System.out.println("EATEN");
+					}
 				}
 				
 				
