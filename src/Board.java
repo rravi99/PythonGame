@@ -58,6 +58,7 @@ public class Board {
 
 		switch(direction) {
 			case "Right":
+			//case "→":
 				
 				// moveSnakeLoop();
 				
@@ -81,6 +82,7 @@ public class Board {
 				}
 				break;
 			case "Left":
+			//case "←":
 				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY-1)) {
 					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY-1);
 					this.jack.currentHeadY--;
@@ -91,6 +93,7 @@ public class Board {
 				}
 				break;
 			case "Up":
+			//case "↑":
 				if(!this.jack.isPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY)) {
 					this.jack.addPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY);
 					this.jack.currentHeadX--;
@@ -101,6 +104,7 @@ public class Board {
 				}
 				break;
 			case "Down":
+			//case "↓":
 				if(!this.jack.isPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY)) {
 					this.jack.addPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY);
 					this.jack.currentHeadX++;

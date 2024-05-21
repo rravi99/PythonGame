@@ -199,7 +199,7 @@ public class GamePanel extends JPanel {
     		@Override
     		public void keyPressed(KeyEvent k) {
     			//System.out.println("HEY");
-    			//System.out.println(k.getKeyText(k.getKeyCode()));
+    			System.out.println(k.getKeyText(k.getKeyCode()));
     			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
     			
     			/*for(int i = 0; i < 5; i++) {
