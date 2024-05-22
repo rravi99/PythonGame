@@ -67,7 +67,8 @@ public class GamePanel extends JPanel {
     	}catch (IOException e) {
     		e.printStackTrace();
     	}
-  
+    	snakeHead = new Point(0,0);
+    	fruitCoord = new Point(0,0);
     }
 
     // Keep this method!
@@ -100,12 +101,12 @@ public class GamePanel extends JPanel {
         }
         
        
-        g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
+        //g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
         g.setColor(new Color(179,185,178));
         g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         drawSnake(g);
         drawFruit(g);
-        
+        //System.out.printf("Panel width: %d, Panel height: %d\n", this.getWidth(), this.getHeight());
         
       /*  Thread one = new Thread() {
 			public void run() {
@@ -135,6 +136,13 @@ public class GamePanel extends JPanel {
 			g.fillRect(point.getCol() * this.cellWidth, point.getRow() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
 			
     	}
+    	
+    	int col = points.get(points.size()-1).getCol();
+    	int row = points.get(points.size()-1).getRow();
+    	snakeHead = new Point(row + 1, col + 2);
+    	//int row = snakeHead.getRow();
+    	//snakeHead.setRow(snakeHead.getCol() * this.cellWidth );
+    	//snakeHead.setCol(row * this.cellHeight + (this.getHeight() / 9));
     	//snakePoints = point.get(points.size-1);
     	//g.setColor(Color.BLACK);
     	//g.fillOval(points.get(points.size() - 1).getCol() * this.cellWidth, points.get(points.size() - 1).getRow() * this.cellHeight, cellHeight/5, cellHeight/5);
@@ -172,6 +180,8 @@ public class GamePanel extends JPanel {
     		yCoord += (this.getHeight() / 9) * 2;
     	}
     	
+    	fruitCoord = new Point(fruitLoc.getRow(), fruitLoc.getCol() + 2);
+    	
     	//System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
     	g.drawImage(image, xCoord, yCoord, image.getWidth()/4, image.getHeight()/4, this);
     }
@@ -199,9 +209,9 @@ public class GamePanel extends JPanel {
     		@Override
     		public void keyPressed(KeyEvent k) {
     			//System.out.println("HEY");
-    			System.out.println(k.getKeyText(k.getKeyCode()));
+    			//System.out.println(k.getKeyText(k.getKeyCode()));
     			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
-    			
+ 
     			/*for(int i = 0; i < 5; i++) {
     				//System.out.print("IN LOOP" + k.getKeyText(k.getKeyCode()));
     				try {
@@ -213,6 +223,15 @@ public class GamePanel extends JPanel {
     				}
     				
     			} */
+    			
+    			
+    			if ( (Math.abs(snakeHead.getRow() - fruitCoord.getRow()) <= 2) && Math.abs((snakeHead.getCol() - fruitCoord.getCol())) <= 2) {
+    				System.out.println("eat");
+    			}
+    				System.out.printf("snake head coord: (%d, %d)\n", snakeHead.getRow(), snakeHead.getCol());
+    				System.out.printf("fruit coord: (%d, %d)\n\n", fruitCoord.getRow(), fruitCoord.getCol());
+    			
+    			
     			GamePanel.this.repaint();
     		}
     	});

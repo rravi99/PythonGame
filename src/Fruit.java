@@ -14,7 +14,8 @@ public class Fruit {
 		//this.fruit = //Image of apple
 		this.fruitPath = "Fruit/Apple.png";
 		
-		this.fruitLoc = new Point(((int) (Math.random() * 15) + 1), ((int) (Math.random() * 16)));
+		// 0 to 15
+		this.fruitLoc = new Point(((int) (Math.random() * 16)), ((int) (Math.random() * 16)));
 		
           
 	}
