@@ -28,8 +28,8 @@ public class Python {
 		points.add(new Point(6, 1));
 		points.add(new Point(6, 2));
 		points.add(new Point(6, 3));
-		currentHeadY = points.get(2).getCol();
-		currentHeadX = points.get(2).getRow();
+		currentHeadX = points.get(2).getCol();
+		currentHeadY = points.get(2).getRow();
 	}
 	
 	public void handleLength() {
@@ -61,7 +61,7 @@ public class Python {
 		this.points = points;
 	}
 	public void addPoint(int x, int y) {
-		points.add(new Point(x, y));
+		points.add(new Point(y, x));
 	}
 	public void removePoint() {
 		points.remove(0);

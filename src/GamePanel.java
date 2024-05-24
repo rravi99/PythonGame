@@ -228,7 +228,7 @@ public class GamePanel extends JPanel {
     			if ( (Math.abs(snakeHead.getRow() - fruitCoord.getRow()) <= 2) && Math.abs((snakeHead.getCol() - fruitCoord.getCol())) <= 2) {
     				System.out.println("eat");
     			}
-    				System.out.printf("snake head coord: (%d, %d)\n", snakeHead.getRow(), snakeHead.getCol());
+    				System.out.printf("snake head coord: (%d, %d)\n", snakeHead.getCol(), snakeHead.getRow());
     				System.out.printf("fruit coord: (%d, %d)\n\n", fruitCoord.getRow(), fruitCoord.getCol());
     			
     			

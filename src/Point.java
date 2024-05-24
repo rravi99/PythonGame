@@ -23,6 +23,10 @@ public class Point {
 		this.col = col;
 	}
 	
+	public String toString() {
+		return col + ", " + row;
+	}
+	
 	
 	
 }

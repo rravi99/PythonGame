@@ -66,10 +66,13 @@ public class Board {
 				// break
 				// Else recursively call so snake keeps moving
 				
-				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY+1)) {
-					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY+1);
-					this.jack.currentHeadY++;
+				if(!this.jack.isPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY)) {
+					System.out.println("Old Head: " + this.jack.currentHeadX + ", " +  this.jack.currentHeadY);
+					this.jack.addPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY);
+					this.jack.currentHeadX++;
+					System.out.println("New Head: " + this.jack.currentHeadX + ", " +  this.jack.currentHeadY);
 					this.jack.removePoint();
+					System.out.println(jack.getPoints().toString());
 					if(currFruit.getFruitLoc().getRow() == this.jack.currentHeadY && currFruit.getFruitLoc().getCol() == this.jack.currentHeadX) {
 						System.out.println("EATEN");
 					}
@@ -83,18 +86,7 @@ public class Board {
 				break;
 			case "Left":
 			//case "←":
-				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY-1)) {
-					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY-1);
-					this.jack.currentHeadY--;
-					this.jack.removePoint();
-					if(this.jack.currentHeadY == 0) {
-						//Game Ended(COLLISION OCCURED)
-					}
-				}
-				break;
-			case "Up":
-			//case "↑":
-				if(!this.jack.isPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY)) {
+				if(!this.jack.isPoint(this.jack.currentHeadX -1, this.jack.currentHeadY)) {
 					this.jack.addPoint(this.jack.currentHeadX - 1, this.jack.currentHeadY);
 					this.jack.currentHeadX--;
 					this.jack.removePoint();
@@ -103,13 +95,26 @@ public class Board {
 					}
 				}
 				break;
+			case "Up":
+			//case "↑":
+				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY - 1)) {
+					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY - 1);
+					this.jack.currentHeadY--;
+					this.jack.removePoint();
+					if(this.jack.currentHeadY == 0) {
+						//Game Ended(COLLISION OCCURED)
+					}
+				}
+				break;
 			case "Down":
 			//case "↓":
-				if(!this.jack.isPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY)) {
-					this.jack.addPoint(this.jack.currentHeadX + 1, this.jack.currentHeadY);
-					this.jack.currentHeadX++;
+				if(!this.jack.isPoint(this.jack.currentHeadX, this.jack.currentHeadY + 1)) {
+					System.out.println("Old Head: " + this.jack.currentHeadX + ", " +  this.jack.currentHeadY);
+					this.jack.addPoint(this.jack.currentHeadX, this.jack.currentHeadY + 1);
+					this.jack.currentHeadY++;
+					System.out.println("New Head: " + this.jack.currentHeadX + ", " +  this.jack.currentHeadY);
 					this.jack.removePoint();
-					if(this.jack.currentHeadX == 17) {
+					if(this.jack.currentHeadY == 17) {
 						//Game Ended(COLLISION OCCURED)
 					}
 				}
