@@ -25,11 +25,13 @@ public class Python {
 		color = Color.BLUE;
 		
 		points = new ArrayList<>();
-		points.add(new Point(6, 1));
-		points.add(new Point(6, 2));
-		points.add(new Point(6, 3));
-		currentHeadX = points.get(2).getCol();
-		currentHeadY = points.get(2).getRow();
+		points.add(new Point(1, 6));
+		points.add(new Point(2, 6));
+		points.add(new Point(3, 6));
+		
+		// might not work for checking pos-only calculated at beginning?
+		currentHeadX = points.get(2).getX();
+		currentHeadY = points.get(2).getY();
 	}
 	
 	public void handleLength() {
@@ -44,6 +46,9 @@ public class Python {
 		
 	}
 	
+	public boolean ateFruit(Point fruitCoord) {
+		return (currentHeadX == fruitCoord.getX()) && (currentHeadY == fruitCoord.getY());
+	}
 
 	public Color getColor() {
 		return color;
@@ -60,15 +65,37 @@ public class Python {
 	public void setPoints(ArrayList<Point> points) {
 		this.points = points;
 	}
-	public void addPoint(int x, int y) {
-		points.add(new Point(y, x));
+	
+	
+	public int getCurrentHeadY() {
+		return currentHeadY;
 	}
+
+	public void setCurrentHeadY(int currentHeadY) {
+		this.currentHeadY = currentHeadY;
+	}
+
+	public int getCurrentHeadX() {
+		return currentHeadX;
+	}
+
+	public void setCurrentHeadX(int currentHeadX) {
+		this.currentHeadX = currentHeadX;
+	}
+
+	// swapped x and y, not sure where used: check on that
+	public void addPoint(int x, int y) {
+		points.add(new Point(x, y));
+	}
+	
 	public void removePoint() {
 		points.remove(0);
 	}
+	
+	// checks if jack is running (slithering?) over himself
 	public boolean isPoint(int x, int y) {
 		for (int i = 0; i < points.size(); i++) {
-		    if(points.get(i).getRow() == x && points.get(i).getCol() == y) {
+		    if(points.get(i).getX() == x && points.get(i).getY() == y) {
 		    	return true;
 		    }
 		    

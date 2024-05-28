@@ -1,32 +1,48 @@
 
 public class Point {
-	private int row;
-	private int col;
+	private int x;
+	private int y;
 	
 	
-	public Point(int row, int col) {
+	public Point(int x, int y) {
 		super();
-		this.row = row;
-		this.col = col;
+		this.x = x;
+		this.y = y;
 	}
 	
-	public int getRow() {
-		return row;
-	}
-	public void setRow(int row) {
-		this.row = row;
-	}
-	public int getCol() {
-		return col;
-	}
-	public void setCol(int col) {
-		this.col = col;
-	}
 	
+	
+	public int getX() {
+		return x;
+	}
+
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+
+	public int getY() {
+		return y;
+	}
+
+
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+
 	public String toString() {
-		return col + ", " + row;
+		return x + ", " + y;
 	}
 	
+	public boolean equals(Point other) {
+		return (this.getX() == other.getX()) && (this.getY() == other.getY());
+	}
 	
 	
 }

@@ -17,6 +17,8 @@ public class Fruit {
 		// 0 to 15
 		this.fruitLoc = new Point(((int) (Math.random() * 16)), ((int) (Math.random() * 16)));
 		
+		// prevent fruit from appearing ON jack
+		
           
 	}
 

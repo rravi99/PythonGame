@@ -101,7 +101,7 @@ public class GamePanel extends JPanel {
         }
         
        
-        //g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
+        g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
         g.setColor(new Color(179,185,178));
         g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         drawSnake(g);
@@ -133,13 +133,13 @@ public class GamePanel extends JPanel {
     	
     	for (Point point : points) {
     		g.setColor(jack.getColor());
-			g.fillRect(point.getCol() * this.cellWidth, point.getRow() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
+			g.fillRect(point.getX() * this.cellWidth, point.getY() * this.cellHeight + (this.getHeight() / 9),this.cellWidth, this.cellHeight);
 			
     	}
     	
-    	int col = points.get(points.size()-1).getCol();
-    	int row = points.get(points.size()-1).getRow();
-    	snakeHead = new Point(row + 1, col + 2);
+    	
+    	
+    	
     	//int row = snakeHead.getRow();
     	//snakeHead.setRow(snakeHead.getCol() * this.cellWidth );
     	//snakeHead.setCol(row * this.cellHeight + (this.getHeight() / 9));
@@ -149,10 +149,9 @@ public class GamePanel extends JPanel {
     }
 
     private void drawFruit(Graphics g) {
-    	
-    	
     	Fruit fruit = board.getFruit();
     	Point fruitLoc = fruit.getFruitLoc();
+    	//System.out.println(fruitLoc);
     	
     	BufferedImage image = null;
     	URL resource;
@@ -164,26 +163,32 @@ public class GamePanel extends JPanel {
     		e.printStackTrace();
     	}
     	
-    	int xCoord = (fruitLoc.getCol() * this.cellWidth) + cellWidth/6; 
+    	int xCoord = (fruitLoc.getX() * this.cellWidth); 
     	
     	
-    	for (Point point: this.board.getPython().getPoints()) {
-    		if (xCoord == (point.getCol() * this.cellWidth)) {
-    			xCoord += cellWidth * 2;
-    		}
-    	}
     	
-    	
-    	int yCoord = (fruitLoc.getRow() * this.cellHeight); //- (cellHeight/2);
+    	int yCoord = (fruitLoc.getY() * this.cellHeight); //- (cellHeight/2);
     	// prevents fruit from being on the grey rectangle
     	if (yCoord <= (this.getHeight()/9)) {
-    		yCoord += (this.getHeight() / 9) * 2;
+    		//yCoord += (this.getHeight() / 9) * 2;
+    		yCoord += this.cellHeight * 2;
     	}
     	
-    	fruitCoord = new Point(fruitLoc.getRow(), fruitLoc.getCol() + 2);
     	
+    	int y = fruitLoc.getY();
+    	
+    	if (y == 2 || y == 0) {
+    		y += 1;
+    	}else if (y >= 1) {
+    		y -= 1;
+    	}
+    	
+    	System.out.println("fruit instance field: " + fruitLoc.getX() + " , " + fruitLoc.getY());
+    	fruitCoord = new Point(fruitLoc.getX() + 1, y);
+    	System.out.println("fruitCoord: " + fruitCoord);
     	//System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
-    	g.drawImage(image, xCoord, yCoord, image.getWidth()/4, image.getHeight()/4, this);
+    	g.drawImage(image, xCoord, yCoord, cellWidth * 3, cellHeight * 3, this);
+    	//g.drawImage(image, xCoord, yCoord, cellWidth, cellHeight, new Color(0.0f, 0.0f, 0.0f, 0.5f), this);
     }
     /**
      * This allows this dialog to be drawn at a good size.
@@ -194,23 +199,30 @@ public class GamePanel extends JPanel {
     }
 
 
+    /*
     private void handleClick(MouseEvent e) {
         int col = e.getX() / cellWidth;
         int row = e.getY() / cellHeight;
 
-            System.out.println(row);
-            System.out.println(col);
+            //System.out.println(row);
+            //System.out.println(col);
          
         repaint();
         }
-    
+    */
     private void createKeyHandlers() {
     	this.addKeyListener(new KeyAdapter() {
     		@Override
     		public void keyPressed(KeyEvent k) {
+    			//System.out.println("registered key");
+    			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    			
+    			
+    			
+    			
     			//System.out.println("HEY");
     			//System.out.println(k.getKeyText(k.getKeyCode()));
-    			board.updateSnakePos(k.getKeyText(k.getKeyCode()));
+    		
  
     			/*for(int i = 0; i < 5; i++) {
     				//System.out.print("IN LOOP" + k.getKeyText(k.getKeyCode()));
@@ -225,11 +237,20 @@ public class GamePanel extends JPanel {
     			} */
     			
     			
-    			if ( (Math.abs(snakeHead.getRow() - fruitCoord.getRow()) <= 2) && Math.abs((snakeHead.getCol() - fruitCoord.getCol())) <= 2) {
-    				System.out.println("eat");
+    			
+    			if (board.getPython().ateFruit(fruitCoord)) {
+    				System.out.println("nom");
+    				board.addFruit();
+    				System.out.println("new fruit");
+    				GamePanel.this.repaint();
+    			}else {
+    				
+    				//System.out.println("fruit: " + fruitCoord);
+    				//System.out.println("head: " + board.getPython().getCurrentHeadX() + "," + board.getPython().getCurrentHeadY());
     			}
-    				System.out.printf("snake head coord: (%d, %d)\n", snakeHead.getCol(), snakeHead.getRow());
-    				System.out.printf("fruit coord: (%d, %d)\n\n", fruitCoord.getRow(), fruitCoord.getCol());
+    				//System.out.printf("snake head coord: (%d, %d)\n", snakeHead.getX(), snakeHead.getY());
+    				
+    				//System.out.printf("fruit coord: (%d, %d)\n\n", fruitCoord.getX(), fruitCoord.getY());
     			
     			
     			GamePanel.this.repaint();
