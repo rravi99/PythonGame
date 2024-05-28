@@ -49,8 +49,19 @@ public class Board {
 	public void addFruit() {
 		this.currFruit = new Fruit();
 		Point fruitLoc = this.currFruit.getFruitLoc();
+		
+		int x = fruitLoc.getX() + 1;
+		int y = fruitLoc.getY();
+    	
+    	if (y == 2 || y == 0) {
+    		y += 1;
+    	}else if (y >= 1) {
+    		y -= 1;
+    	}
+		
+		
 		for (Point point : this.getPython().getPoints()) {
-			if ((point.getX() + 1 == fruitLoc.getX()) && (point.getY() - 1 == fruitLoc.getY())) {
+			if ((point.getX() == x) && (point.getY() == y)) {
 				addFruit();
 			}
 		}
