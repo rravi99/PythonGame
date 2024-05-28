@@ -60,7 +60,7 @@ public class Board {
     	}
 		
 		
-		for (Point point : this.getPython().getPoints()) {
+		for (Point point : jack.getPoints()) {
 			if ((point.getX() == x) && (point.getY() == y)) {
 				addFruit();
 			}
@@ -70,7 +70,7 @@ public class Board {
 	public void updateSnakePos(String direction) {
 		
 		// this.direction = direction;
-
+		//this.jack.setTail(jack.removePoint());
 		switch(direction) {
 			//case "Right":
 			case "→":

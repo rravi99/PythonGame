@@ -101,7 +101,7 @@ public class GamePanel extends JPanel {
         }
         
        
-        g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
+        //g.drawImage(image, 0, 0, this.getWidth(),this.getHeight(), this);
         g.setColor(new Color(179,185,178));
         g.fillRect(0, 0, this.getWidth(), this.getHeight()/9);
         drawSnake(g);
@@ -187,7 +187,7 @@ public class GamePanel extends JPanel {
     	fruitCoord = new Point(fruitLoc.getX() + 1, y);
     	System.out.println("fruitCoord: " + fruitCoord);
     	//System.out.printf("(%d, %d)\n", fruitLoc.getCol() * this.cellWidth, yCoord);
-    	g.drawImage(image, xCoord, yCoord, cellWidth * 3, cellHeight * 3, this);
+    	g.drawImage(image, xCoord, yCoord, cellWidth * 3, cellHeight * 3,new Color(0.0f, 0.0f, 0.0f, 0.5f), this);
     	//g.drawImage(image, xCoord, yCoord, cellWidth, cellHeight, new Color(0.0f, 0.0f, 0.0f, 0.5f), this);
     }
     /**

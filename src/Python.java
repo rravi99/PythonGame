@@ -67,6 +67,13 @@ public class Python {
 		this.points = points;
 	}
 	
+	public void setTail(Point point) {
+		this.currentTail = point;
+	}
+	
+	public Point getTail() {
+		return this.currentTail;
+	}
 	
 	public int getCurrentHeadY() {
 		return currentHeadY;
@@ -90,7 +97,9 @@ public class Python {
 	}
 	
 	public void removePoint() {
+		Point point = points.get(0);
 		points.remove(0);
+		currentTail = new Point(point.getX(), point.getY());
 	}
 	
 	// checks if jack is running (slithering?) over himself
