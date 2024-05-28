@@ -10,6 +10,7 @@ public class Python {
 	private Color color;
 	public int currentHeadY;
 	public int currentHeadX;
+	private Point currentTail;
 	private String direction;
 	
 	public String getDirection() {
