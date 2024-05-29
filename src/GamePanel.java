@@ -241,6 +241,7 @@ public class GamePanel extends JPanel {
     			if (board.getPython().ateFruit(fruitCoord)) {
     				System.out.println("nom");
     				board.addFruit();
+    				board.addanotherPoint();
     				System.out.println("new fruit");
     				GamePanel.this.repaint();
     			}else {
@@ -256,6 +257,10 @@ public class GamePanel extends JPanel {
     			GamePanel.this.repaint();
     		}
     	});
+    }
+    
+    public void makeRepaint() {
+    	GamePanel.this.repaint();
     }
 
 
